@@ -9,7 +9,7 @@ app.use(cors({
 }))
 
 app.get("/", async(req,res) => {
-    res.sendFile(_dirname + "/deep.html");
+    res.sendFile(__dirname + "/deep.html");
 });
 
 app.post('/search', async (req, res) => {
