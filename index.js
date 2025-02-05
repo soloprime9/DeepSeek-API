@@ -8,6 +8,10 @@ app.use(cors({
     origin: "http://127.0.0.1:5500"
 }))
 
+app.get("/", async(req,res) => {
+    res.sendFile(_dirname + "/deep.html");
+});
+
 app.post('/search', async (req, res) => {
   const query = req.body.query;
   const apiEndpoint = 'https://openrouter.ai/api/v1/chat/completions';
