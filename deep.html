@@ -57,7 +57,7 @@
       const query = queryInput.value.trim();
       if (query) {
         try {
-          const response = await axios.post('http://localhost:3000/search', { query });
+          const response = await axios.post('https://deep-seek-api-hazel.vercel.app/search', { query });
           const answer = response.data.answer;
           resultDiv.innerText = answer;
         } catch (error) {
