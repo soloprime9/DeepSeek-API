@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeepSeek AI Search</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    #search-form {
+      margin-top: 20px;
+    }
+
+    #query {
+      width: 50%;
+      height: 30px;
+      font-size: 18px;
+      padding: 10px;
+    }
+
+    #search-button {
+      width: 100px;
+      height: 30px;
+      font-size: 18px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <h1>DeepSeek AI Search</h1>
+  <form id="search-form">
+    <input type="text" id="query" placeholder="Enter your query">
+    <button id="search-button">Search</button>
+  </form>
+  <div id="result"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios@0.27.2/dist/axios.min.js"></script>
+  <script>
+    const form = document.getElementById('search-form');
+    const queryInput = document.getElementById('query');
+    const resultDiv = document.getElementById('result');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const query = queryInput.value.trim();
+      if (query) {
+        try {
+          const response = await axios.post('http://localhost:3000/search', { query });
+          const answer = response.data.answer;
+          resultDiv.innerText = answer;
+        } catch (error) {
+          console.error(error);
+          resultDiv.innerText = 'Error: ' + error.message;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
